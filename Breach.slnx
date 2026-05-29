@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/API/Breach.API.csproj" />
+    <Project Path="src/AxiomVerge.Breach.mm/AxiomVerge.Breach.mm.csproj" />
+    <Project Path="src/MiniInstaller/MiniInstaller.csproj" />
+  </Folder>
+</Solution>
