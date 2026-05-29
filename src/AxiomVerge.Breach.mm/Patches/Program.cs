@@ -21,7 +21,7 @@ namespace OuterBeyond
                 // Setup steam_appid.txt (Steam seems to look in the working directory)
                 Directory.SetCurrentDirectory(new FileInfo(typeof(THGame).Assembly.Location).Directory.FullName);
                 File.WriteAllText("steam_appid.txt", "332200");
-                
+
                 orig_Main(args);
             }
             catch (Exception e)

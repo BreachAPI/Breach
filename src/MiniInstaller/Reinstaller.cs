@@ -20,7 +20,7 @@ namespace Breach.MiniInstaller
                     Log("Breach is not installed, installing from anew...");
                     return Install(folder);
                 }
-                
+
                 Uninstall(folder, true);
                 Install(folder, true);
 
