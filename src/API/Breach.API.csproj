@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NuGet.Versioning" Version="4.2.0" />
     <!-- Keep the same as patch assembly -->
     <PackageReference Include="MonoMod.RuntimeDetour" Version="22.7.31.1" />
   </ItemGroup>
