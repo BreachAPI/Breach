@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using NuGet.Versioning;
 
 namespace Breach
 {
@@ -41,5 +43,42 @@ namespace Breach
         public virtual void UnloadContent()
         {
         }
+    }
+
+    public class BreachMod
+    {
+        public BreachModMetadata Metadata;
+        public List<BreachModule> Modules;
+    }
+
+    /// <summary>
+    /// Serializable mod metadata
+    /// </summary>
+    public struct BreachModMetadata
+    {
+        /// <summary>
+        /// Unique identifier for the mod
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Display name for the mod
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Version of the mod used
+        /// </summary>
+        public SemanticVersion Version;
+
+        /// <summary>
+        /// Filenames for the mod's assemblies
+        /// </summary>
+        public string[] Assemblies;
+
+        /// <summary>
+        /// IDs of dependency mods
+        /// </summary>
+        public string[] Dependencies;
     }
 }
