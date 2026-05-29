@@ -12,6 +12,7 @@ namespace Breach.MiniInstaller
             ("AxiomVerge.exe", "AxiomVerge.exe", false, true),
             ("MMHOOK_AxiomVerge.dll", "MMHOOK_AxiomVerge.dll", false, false),
             ("Newtonsoft.Json.dll", "Newtonsoft.Json.dll", false, false),
+            ("log4net.dll", "log4net.dll", false, false),
             ("FNA.dll", "FNA.dll", false, false),
         };
 
