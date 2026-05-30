@@ -21,10 +21,15 @@
   <ItemGroup>
     <Reference Include="AxiomVerge">
       <HintPath>..\..\libs\AxiomVerge.exe</HintPath>
+      <Aliases>global,vanilla</Aliases>
       <Private>false</Private>
     </Reference>
     <Reference Include="FNA">
       <HintPath>..\..\libs\FNA.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\libs\log4net.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
@@ -35,9 +40,16 @@
 
   <ItemGroup>
     <!-- Keep the same as API assembly -->
+    <PackageReference Include="MonoMod" Version="22.7.31.1">
+      <ExcludeAssets>none</ExcludeAssets>
+    </PackageReference>
     <PackageReference Include="MonoMod.RuntimeDetour" Version="22.7.31.1">
       <ExcludeAssets>none</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CS0626;CS0414</NoWarn>
+  </PropertyGroup>
 
 </Project>

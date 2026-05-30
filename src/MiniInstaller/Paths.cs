@@ -61,6 +61,7 @@ namespace Breach.MiniInstaller
             "Mono.Cecil.Mdb.dll",
             "Mono.Cecil.dll",
             "NuGet.Versioning.dll",
+            "LogAppender.Breach.xml",
         };
         private static string[] uninstallerFiles;
 

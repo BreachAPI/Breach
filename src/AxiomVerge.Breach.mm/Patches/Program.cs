@@ -1,4 +1,6 @@
-﻿using System;
+﻿extern alias vanilla;
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using Breach;
@@ -11,11 +13,12 @@ namespace OuterBeyond
 
         private static void Main(string[] args)
         {
-            // TODO: Smart error handling once logging is implemented
+            // TODO: Smarter error handling
             AppDomain.CurrentDomain.UnhandledException += (_, e) => HandleException((Exception)e.ExceptionObject);
 
             try
             {
+                THDebug._Initialize();
                 Loader.Load();
 
                 // Setup steam_appid.txt (Steam seems to look in the working directory)
@@ -35,9 +38,10 @@ namespace OuterBeyond
             Console.WriteLine(e);
             try
             {
-                THDebug.Print(e.ToString());
+                vanilla::OuterBeyond.THDebug.PrintException(THLogPriority.FATAL, "Uncaught exception occurred while running the game.", e);
             }
             catch { }
+            
             Debugger.Break();
             Environment.Exit(1);
         }

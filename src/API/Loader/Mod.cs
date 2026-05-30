@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using log4net;
 using NuGet.Versioning;
 
 namespace Breach
@@ -9,6 +10,8 @@ namespace Breach
     /// </summary>
     public class BreachModuleAttribute : Attribute
     {
+        public bool HasOwnLogFile { get; set; } = false;
+        public string LoggerName { get; set; } = null;
     }
 
     /// <summary>
@@ -16,6 +19,8 @@ namespace Breach
     /// </summary>
     public class BreachModule
     {
+        public ILog Logger { get; internal set; }
+
         /// <summary>
         /// Override to add initialization code to your mod (namely, add hooks)
         /// </summary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Breach.Tools;
 
 namespace Breach
 {
@@ -78,6 +79,7 @@ namespace Breach
 
                             // Create instance and go to town
                             BreachModule instance = (BreachModule)Activator.CreateInstance(type);
+                            instance.Logger = Log.GetModLogger(attr.LoggerName ?? file.Name, attr.HasOwnLogFile);
                             Modules.Add(instance);
                             instance.Initialize();
                         }

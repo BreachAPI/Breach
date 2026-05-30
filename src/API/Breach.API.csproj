@@ -28,6 +28,10 @@
       <HintPath>..\..\libs\FNA.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\libs\log4net.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="MMHOOK_AxiomVerge">
       <HintPath>..\..\libs\MMHOOK_AxiomVerge.dll</HintPath>
       <Private>false</Private>
@@ -38,6 +42,13 @@
     <PackageReference Include="NuGet.Versioning" Version="4.2.0" />
     <!-- Keep the same as patch assembly -->
     <PackageReference Include="MonoMod.RuntimeDetour" Version="22.7.31.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Tools/Logging/Log.xml">
+      <Link>LogAppender.Breach.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
