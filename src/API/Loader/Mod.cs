@@ -72,6 +72,7 @@ namespace Breach
         /// </summary>
         public virtual void PostInitialize()
         {
+            // TODO: make sure this is actually called
         }
 
         /// <summary>
@@ -79,6 +80,7 @@ namespace Breach
         /// </summary>
         public virtual void Deinitialize()
         {
+            // TODO: make sure this is actually called
         }
 
         /// <summary>
@@ -86,6 +88,7 @@ namespace Breach
         /// </summary>
         public virtual void LoadContent()
         {
+            // TODO: make sure this is actually called
         }
 
         /// <summary>
@@ -93,6 +96,7 @@ namespace Breach
         /// </summary>
         public virtual void UnloadContent()
         {
+            // TODO: make sure this is actually called
         }
     }
 

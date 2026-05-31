@@ -109,6 +109,8 @@ namespace Breach
                 throw new Exception("mod load error: multiple mods with same id");
             }
 
+            // TODO: allow specifying minimum version on dependencies, and check against actual versions
+            // TODO: implement special case in version check for dependency "Breach"
             var missingDependencies = new List<Tuple<string, BreachModHandle>>();
             foreach (var modHandle in modList) {
                 foreach (var dependency in modHandle.Metadata.Dependencies) {
@@ -125,6 +127,7 @@ namespace Breach
         }
 
         private static List<BreachModHandle> OrderModsByDependencies(List<BreachModHandle> modList) {
+            // TODO: implement optional dependencies, which affect sort order but don't prevent loading if missing
             var loadOrder = new List<BreachModHandle>();
             var processedMods = new HashSet<string>();
             var remainingMods = new List<BreachModHandle>(modList.Count);
@@ -193,8 +196,12 @@ namespace Breach
                     }
                 }
 
+                // Each module can potentially register additional modules.
+                // To allow for this, we use a plain for-loop and append all
+                // newly registered modules to the end of the list as we go.
                 for (int i = 0; i < moduleList.Count; i++) {
                     var module = moduleList[i];
+                    // TODO: add some kind of check that prevents the same module from being registered twice
                     var register = module.RegisterModules(loadOrder);
                     moduleList.AddRange(register);
                 }
