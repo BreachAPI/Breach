@@ -4,25 +4,27 @@ using MonoMod;
 
 namespace OuterBeyond
 {
-	internal class THDebug
-	{
-		private static THLogPriority mMinOutputLevel;
-		private static readonly ILog mLog = Log.Initialize();
+    internal class patch_THDebug
+    {
+        private static THLogPriority mMinOutputLevel;
+        private static readonly ILog mLog = Log.Initialize();
 
-		[MonoModConstructor]
-		public static void StaticConstructor()
-		{
-			// Do nothing here, omits the original mLog assignment from overriding ours
-		}
+        [MonoModReplace]
+        [MonoModConstructor]
+        public static void StaticConstructor()
+        {
+            // Do nothing here, omits the original mLog assignment from overriding ours
+        }
 
-		public static void Initialize()
+        [MonoModReplace]
+        public static void Initialize()
         {
             // Do nothing here, below initializer is called in the patched Program.Main
         }
 
-		internal static void _Initialize()
-		{
+        internal static void _Initialize()
+        {
             mMinOutputLevel = THLogPriority.DEBUG;
-		}
+        }
     }
 }

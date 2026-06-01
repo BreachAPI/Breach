@@ -23,6 +23,7 @@ namespace Breach.MiniInstaller
                     return false;
                 }
 
+                // TODO: check for existence of type MonoMod.WasHere to ensure the .exe is actually vanilla
                 Log($"Backing up original exe: '{vanillaExe}' -> '{backupExe}'");
                 File.Move(vanillaExe, backupExe);
 

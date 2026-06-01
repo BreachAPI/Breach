@@ -72,7 +72,6 @@ namespace Breach
         /// </summary>
         public virtual void PostInitialize()
         {
-            // TODO: make sure this is actually called
         }
 
         /// <summary>

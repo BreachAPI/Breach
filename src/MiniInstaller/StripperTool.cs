@@ -69,6 +69,7 @@ namespace Breach.MiniInstaller
             // Only publicize classes for the game's assembly
             if (game && type.Namespace.StartsWith("OuterBeyond"))
             {
+                // TODO: don't publicize Program, THDebug, etc.
                 if (type.IsNested)
                     type.Attributes = (type.Attributes & ~TypeAttributes.VisibilityMask) | TypeAttributes.NestedPublic;
                 else

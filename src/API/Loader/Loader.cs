@@ -8,8 +8,10 @@ using Breach.Tools;
 
 namespace Breach
 {
-    public static class Loader
-    {
+    public static class Loader {
+        public const string MOD_FOLDER_NAME = "Mods";
+        public const string MOD_META_FILE_NAME = "mod.json";
+        
         public static readonly Assembly LoaderAssembly = typeof(Loader).Assembly;
         public static readonly string PathGameFile;
         public static readonly string PathGameFolder;
@@ -22,7 +24,7 @@ namespace Breach
         {
             PathGameFile = Path.GetFullPath(typeof(OuterBeyond.THGame).Assembly.Location);
             PathGameFolder = Path.GetDirectoryName(PathGameFile)!;
-            PathModsFolder = Path.Combine(PathGameFolder, "Mods");
+            PathModsFolder = Path.Combine(PathGameFolder, MOD_FOLDER_NAME);
 
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
         }
@@ -66,9 +68,15 @@ namespace Breach
             Mods = loadedMods.ToImmutableArray();
             var loadedModules = loadedMods.SelectMany(m => m.Modules).ToImmutableArray();
             Modules = loadedModules;
-            
-            foreach (var module in loadedModules) {
-                module.Initialize();
+
+            InitializeMods(loadedModules);
+        }
+
+        public static void PostLoad() {
+            // TODO: auto-load modded resources
+            foreach (var module in Modules) {
+                // TODO: catch exeptions thrown by mods, and put those mods on the naughty list
+                module.PostInitialize();
             }
         }
 
@@ -76,7 +84,7 @@ namespace Breach
             var list = new List<BreachModHandle>();
 
             foreach (var modDir in Directory.EnumerateDirectories(PathModsFolder)) {
-                var metadataFile = new FileInfo(Path.Combine(modDir, "mod.json"));
+                var metadataFile = new FileInfo(Path.Combine(modDir, MOD_META_FILE_NAME));
                 if (!metadataFile.Exists) continue;
 
                 list.Add(new BreachModHandle {
@@ -202,6 +210,7 @@ namespace Breach
                 for (int i = 0; i < moduleList.Count; i++) {
                     var module = moduleList[i];
                     // TODO: add some kind of check that prevents the same module from being registered twice
+                    // TODO: catch exeptions thrown by mods, and put those mods on the naughty list
                     var register = module.RegisterModules(loadOrder);
                     moduleList.AddRange(register);
                 }
@@ -214,6 +223,13 @@ namespace Breach
             }
 
             return loadedModList;
+        }
+
+        private static void InitializeMods(ImmutableArray<BreachModule> mods) {
+            foreach (var module in mods) {
+                // TODO: catch exeptions thrown by mods, and put those mods on the naughty list
+                module.Initialize();
+            }
         }
     }
 }
